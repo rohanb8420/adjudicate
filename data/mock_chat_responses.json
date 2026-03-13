@@ -1,0 +1,152 @@
+{
+  "AF-2026-0001": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Manual Review - New Dealer.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: clean approve.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is approve.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: clean approve.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0002": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: High LTV.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: strong conditional approval with increased down payment.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: strong conditional approval with increased down payment.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0003": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Income Verification.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: conditional approval requiring income verification.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: Latest paystub, 3 months bank statements.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: conditional approval requiring income verification.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: Awaiting Docs."
+  },
+  "AF-2026-0004": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Affordability Concern.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: decline due to weak affordability + poor bureau.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: No material compensating factors.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is decline.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: decline due to weak affordability + poor bureau.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0005": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Borderline Ratios.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: borderline case with strong compensating factors.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: borderline case with strong compensating factors.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0006": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Dealer Risk Review.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: dealer-risk-driven manual review.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: dealer-risk-driven manual review.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: Escalated."
+  },
+  "AF-2026-0007": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Valuation Mismatch.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: vehicle valuation mismatch case.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: Independent appraisal.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: vehicle valuation mismatch case.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0008": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Age/Term Mismatch.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: long-term / old-vehicle mismatch case.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: long-term / old-vehicle mismatch case.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0009": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Mileage Exception.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: high mileage exception review.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: high mileage exception review.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0010": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Repeat Customer Review.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: repeat customer with strong TD history.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Excellent TD relationship, Prior paid-off loans, Strong capacity.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is approve.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: repeat customer with strong TD history.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0011": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Documentation Incomplete.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: incomplete documentation case.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: Proof of address, Insurance binder, Signed bill of sale.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: incomplete documentation case.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: Awaiting Docs."
+  },
+  "AF-2026-0012": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: High LTV / Strong Income.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: high LTV but strong income case.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Strong income, Long tenure, Healthy residual income.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: high LTV but strong income case.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0013": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Policy Exception Review.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: policy-exception-like case.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: 2 years NOA, Business financial summary.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: policy-exception-like case.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: Escalated."
+  },
+  "AF-2026-0014": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Thin File / Luxury.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: luxury vehicle / thin-file case.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Reasonable bureau, No major derogatories, Dealer quality acceptable.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is conditional approval.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: luxury vehicle / thin-file case.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  },
+  "AF-2026-0015": {
+    "why_high_risk": "Primary risk comes from ratio pressure and policy exceptions. The structure pushes risk metrics above standard appetite. Queue reason: Prime Fast Track.",
+    "policy_breaches": "Policy review shows exceptions on one or more of LTV, PTI, DTI, bureau floor, vehicle constraints, dealer eligibility, or documentation checks. Case type: prime applicant / straightforward approve.",
+    "compensating_factors": "Compensating factors include income strength, tenure stability, repayment history, and collateral quality. Noted: Strong income, Long tenure, Healthy residual income.",
+    "why_conditional": "Conditional approval is used when the core file is workable but risk needs reduction through targeted conditions. Baseline recommendation is approve.",
+    "additional_documents": "Request updated income proof, proof of residence, insurance confirmation, and collateral valuation support if required. Missing docs: none listed.",
+    "alternate_deals": "Alternate structures can reduce risk by increasing down payment, reducing term, or lowering amount financed. Start with +$2,500 down payment and/or -12 months term.",
+    "summary_of_case": "This file is in manual review due to policy trigger(s) that need adjudicator judgement. Segment: prime applicant / straightforward approve.",
+    "recommended_next_step": "Apply conditions, validate outstanding checks, and re-run policy and risk metrics before final sign-off. Queue status: In Review."
+  }
+}
