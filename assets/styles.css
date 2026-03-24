@@ -78,6 +78,13 @@
   color: var(--td-green-dark);
 }
 
+.right-pane h2 {
+  margin: 0 0 8px 0;
+  color: var(--td-green-dark) !important;
+  font-size: 20px;
+  font-weight: 800;
+}
+
 .left-pane,
 .center-pane,
 .right-pane {
@@ -178,6 +185,19 @@
   margin: 4px 0 12px 0;
   font-size: 12px;
   font-weight: 700;
+}
+
+.copilot-panel {
+  border: 1px solid #c7ddd1;
+  border-radius: 12px;
+  background: #f7fcfa;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.whatif-signal-card .mini-grid {
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
 }
 
 .summary-strip {

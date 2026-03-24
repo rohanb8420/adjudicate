@@ -312,13 +312,7 @@ def build_panels(
     chat_history: list[dict[str, str]],
 ) -> tuple[Any, ...]:
     policy_html, compliant = render_policy_matrix(current_metrics)
-    scenario_html = (
-        "<div class='section-card'><h3>What-If Delta (Before vs After)</h3>"
-        f"<p>LTV: <b>{fmt_pct(base_metrics['ltv'])}</b> -> <b>{fmt_pct(current_metrics['ltv'])}</b> | "
-        f"PTI: <b>{fmt_pct(base_metrics['pti'])}</b> -> <b>{fmt_pct(current_metrics['pti'])}</b> | "
-        f"Monthly: <b>{fmt_currency(base_metrics['monthly_payment'])}</b> -> <b>{fmt_currency(current_metrics['monthly_payment'])}</b> | "
-        f"Expected Loss: <b>{fmt_currency(base_metrics['expected_loss'])}</b> -> <b>{fmt_currency(current_metrics['expected_loss'])}</b></p></div>"
-    )
+    scenario_html = ""
     applicant, dealer, vehicle, policy, similar = render_history_tabs(app, current_metrics)
     badge_html, conf, summary, positives, risks, conditions, alternates = render_recommendation_panel(recommendation)
     compliance_badge = (
@@ -345,7 +339,6 @@ def build_panels(
         risks,
         conditions,
         alternates,
-        recommendation.adjudication_memo,
         compliance_badge,
         render_chat(chat_history),
     )
@@ -356,7 +349,7 @@ def initialize_dashboard(
     chat_map: dict[str, dict[str, str]],
 ) -> tuple[Any, ...]:
     if not apps:
-        return tuple([""] * 21) + ({}, {}, {}, 0.0, 0, 0.0, [], {})
+        return tuple([""] * 20) + ({}, {}, {}, [], {})
     app = apps[0]
     base_metrics = app["_base_metrics"]
     rec = MockRecommendation.model_validate(app["_base_recommendation"])
@@ -366,30 +359,19 @@ def initialize_dashboard(
         app,
         base_metrics,
         base_metrics,
-        base_metrics["scenario"]["cash_down_payment"],
-        base_metrics["scenario"]["term_months"],
-        base_metrics["scenario"]["amount_financed"],
         chat_history,
         rec.model_dump(),
     )
 
 
-def recalc_for_scenario(
+def refresh_recommendation(
     selected_app: dict[str, Any] | None,
     chat_map: dict[str, dict[str, str]],
     base_metrics: dict[str, Any] | None,
-    down_payment: float,
-    term_months: int,
-    amount_financed: float,
 ) -> tuple[Any, ...]:
     if not selected_app:
-        return tuple([""] * 21) + ({}, {}, {})
-    scenario = {
-        "cash_down_payment": float(down_payment if down_payment is not None else selected_app["cash_down_payment"]),
-        "term_months": int(term_months if term_months is not None else selected_app["term_months"]),
-    }
-    if amount_financed is not None:
-        scenario["amount_financed"] = float(amount_financed)
+        return tuple([""] * 20) + ({}, {}, {})
+    scenario = (base_metrics or selected_app.get("_base_metrics") or {}).get("scenario", {})
     current_metrics = compute_application_metrics(selected_app, scenario)
     recommendation = generate_mock_recommendation(selected_app, current_metrics, chat_map)
     chat_history = [{"role": "assistant", "text": recommendation.chatbot_responses["summary_of_case"]}]
@@ -403,7 +385,7 @@ def select_row(
     chat_map: dict[str, dict[str, str]],
 ) -> tuple[Any, ...]:
     if not filtered_apps:
-        return tuple([""] * 21) + ({}, {}, {}, 0.0, 0, 0.0, [], {})
+        return tuple([""] * 20) + ({}, {}, {}, [], {})
     row = evt.index[0] if isinstance(evt.index, (tuple, list)) else int(evt.index)
     app = filtered_apps[max(0, min(row, len(filtered_apps) - 1))]
     base_metrics = app["_base_metrics"]
@@ -414,22 +396,9 @@ def select_row(
         app,
         base_metrics,
         base_metrics,
-        base_metrics["scenario"]["cash_down_payment"],
-        base_metrics["scenario"]["term_months"],
-        base_metrics["scenario"]["amount_financed"],
         chat_history,
         rec.model_dump(),
     )
-
-
-def export_memo(app: dict[str, Any] | None, memo_text: str) -> str:
-    if not app:
-        return "No application selected."
-    out_dir = ROOT / "exports"
-    out_dir.mkdir(exist_ok=True)
-    out_path = out_dir / f"{app['application_id']}_memo.md"
-    out_path.write_text(memo_text.strip() + "\n", encoding="utf-8")
-    return f"Memo exported: {out_path}"
 
 
 def apply_condition(app: dict[str, Any] | None, down: float, term: int, amount: float) -> tuple[float, int, float]:
@@ -468,6 +437,12 @@ def chat_from_chip(intent: str, recommendation_data: dict[str, Any], history: li
     reply, _ = get_mock_chat_reply(user_text, rec, preferred_intent=intent)
     new_history = history + [{"role": "user", "text": user_text}, {"role": "assistant", "text": reply}]
     return render_chat(new_history), new_history
+
+
+def clear_chat(recommendation_data: dict[str, Any]) -> tuple[str, list[dict[str, str]]]:
+    rec = MockRecommendation.model_validate(recommendation_data)
+    history = [{"role": "assistant", "text": rec.chatbot_responses.get("summary_of_case", "Ready for follow-up questions.")}]
+    return render_chat(history), history
 
 
 applications = load_applications()
@@ -529,6 +504,7 @@ with gr.Blocks(title="TD Auto Finance - Assisted Lending Workbench", css=CSS_PAT
                 timeline_html = gr.HTML()
 
         with gr.Column(scale=4, elem_classes="right-pane"):
+            gr.Markdown("## AI Recommendation")
             policy_badge = gr.HTML()
             gr.HTML("<div class='mock-mode'>AI Mode: Deterministic Mock Engine</div>")
             recommendation_badge = gr.HTML()
@@ -538,36 +514,25 @@ with gr.Blocks(title="TD Auto Finance - Assisted Lending Workbench", css=CSS_PAT
             risk_md = gr.Markdown(label="Top Risk Drivers")
             conditions_md = gr.Markdown(label="Suggested Conditions")
             alternate_md = gr.Markdown(label="Alternate Structures (Secondary)")
-            memo_box = gr.Textbox(label="Draft Adjudication Memo", lines=9)
-            with gr.Row():
-                refresh_btn = gr.Button("Refresh AI Recommendation", variant="primary")
-                memo_btn = gr.Button("Generate Memo")
-            with gr.Row():
-                apply_btn = gr.Button("Apply Sample Condition")
-                reset_btn = gr.Button("Reset Scenario")
-            with gr.Row():
-                export_btn = gr.Button("Export Memo")
-                export_status = gr.Textbox(show_label=False, interactive=False)
+            refresh_btn = gr.Button("Refresh AI Recommendation", variant="primary")
 
-            gr.Markdown("### What-If Condition Simulator")
-            down_slider = gr.Slider(0, 15000, step=100, label="Down Payment")
-            term_slider = gr.Slider(36, 84, step=12, label="Term (Months)")
-            amount_input = gr.Number(label="Amount Financed", precision=2)
-
-            gr.Markdown("### Ask Adjudication Copilot")
-            gr.Markdown("_Mock copilot responses for demo purposes_")
-            chat_html = gr.HTML()
-            with gr.Row():
-                chip1 = gr.Button("Why is this high risk?")
-                chip2 = gr.Button("What are the key policy breaches?")
-            with gr.Row():
-                chip3 = gr.Button("What compensating factors exist?")
-                chip4 = gr.Button("Why conditional approval instead of decline?")
-            with gr.Row():
-                chip5 = gr.Button("What additional documents would you ask for?")
-                chip6 = gr.Button("Show alternate deal options")
-            chat_input = gr.Textbox(label="Type a question", placeholder="Ask anything about this case")
-            chat_send = gr.Button("Send")
+            with gr.Group(elem_classes="copilot-panel"):
+                gr.Markdown("### Ask Adjudication Copilot")
+                gr.Markdown("_Mock copilot responses for demo purposes_")
+                chat_html = gr.HTML()
+                with gr.Row():
+                    chip1 = gr.Button("Why is this high risk?")
+                    chip2 = gr.Button("What are the key policy breaches?")
+                with gr.Row():
+                    chip3 = gr.Button("What compensating factors exist?")
+                    chip4 = gr.Button("Why conditional approval instead of decline?")
+                with gr.Row():
+                    chip5 = gr.Button("What additional documents would you ask for?")
+                    chip6 = gr.Button("Show alternate deal options")
+                chat_input = gr.Textbox(label="Type a question", placeholder="Ask anything about this case")
+                with gr.Row():
+                    chat_send = gr.Button("Send", variant="primary")
+                    chat_clear = gr.Button("Clear Chat")
 
     gr.HTML("<div class='footer'>Internal Demo - Synthetic Data | AI recommendation is mocked for demo purposes</div>")
 
@@ -582,49 +547,22 @@ with gr.Blocks(title="TD Auto Finance - Assisted Lending Workbench", css=CSS_PAT
     selection_outputs = [
         summary_strip, top_cards, policy_matrix, financial_view, scenario_compare, applicant_tab, dealer_tab, vehicle_tab,
         policy_tab, similar_tab, timeline_html, recommendation_badge, confidence_md, executive_summary, positive_md,
-        risk_md, conditions_md, alternate_md, memo_box, policy_badge, chat_html, selected_app_state, base_metrics_state,
-        current_metrics_state, down_slider, term_slider, amount_input, chat_history_state, recommendation_state,
+        risk_md, conditions_md, alternate_md, policy_badge, chat_html, selected_app_state, base_metrics_state,
+        current_metrics_state, chat_history_state, recommendation_state,
     ]
     queue_table.select(select_row, [filtered_state, chat_lookup_state], selection_outputs)
 
     scenario_outputs = [
         summary_strip, top_cards, policy_matrix, financial_view, scenario_compare, applicant_tab, dealer_tab, vehicle_tab,
         policy_tab, similar_tab, timeline_html, recommendation_badge, confidence_md, executive_summary, positive_md,
-        risk_md, conditions_md, alternate_md, memo_box, policy_badge, chat_html, current_metrics_state, recommendation_state, chat_history_state
+        risk_md, conditions_md, alternate_md, policy_badge, chat_html, current_metrics_state, recommendation_state, chat_history_state
     ]
-    for control in [down_slider, term_slider, amount_input]:
-        control.change(
-            recalc_for_scenario,
-            [selected_app_state, chat_lookup_state, base_metrics_state, down_slider, term_slider, amount_input],
-            scenario_outputs,
-        )
 
     refresh_btn.click(
-        recalc_for_scenario,
-        [selected_app_state, chat_lookup_state, base_metrics_state, down_slider, term_slider, amount_input],
+        refresh_recommendation,
+        [selected_app_state, chat_lookup_state, base_metrics_state],
         scenario_outputs,
     )
-    memo_btn.click(
-        recalc_for_scenario,
-        [selected_app_state, chat_lookup_state, base_metrics_state, down_slider, term_slider, amount_input],
-        scenario_outputs,
-    )
-    apply_btn.click(apply_condition, [selected_app_state, down_slider, term_slider, amount_input], [down_slider, term_slider, amount_input]).then(
-        recalc_for_scenario,
-        [selected_app_state, chat_lookup_state, base_metrics_state, down_slider, term_slider, amount_input],
-        scenario_outputs,
-    )
-    reset_btn.click(
-        lambda base: (base["scenario"]["cash_down_payment"], base["scenario"]["term_months"], base["scenario"]["amount_financed"]),
-        [base_metrics_state],
-        [down_slider, term_slider, amount_input],
-    ).then(
-        recalc_for_scenario,
-        [selected_app_state, chat_lookup_state, base_metrics_state, down_slider, term_slider, amount_input],
-        scenario_outputs,
-    )
-    export_btn.click(export_memo, [selected_app_state, memo_box], [export_status])
-
     chat_send.click(chat_from_text, [chat_input, recommendation_state, chat_history_state], [chat_html, chat_history_state, chat_input])
     chip1.click(lambda r, h: chat_from_chip("why_high_risk", r, h), [recommendation_state, chat_history_state], [chat_html, chat_history_state])
     chip2.click(lambda r, h: chat_from_chip("policy_breaches", r, h), [recommendation_state, chat_history_state], [chat_html, chat_history_state])
@@ -632,6 +570,7 @@ with gr.Blocks(title="TD Auto Finance - Assisted Lending Workbench", css=CSS_PAT
     chip4.click(lambda r, h: chat_from_chip("why_conditional", r, h), [recommendation_state, chat_history_state], [chat_html, chat_history_state])
     chip5.click(lambda r, h: chat_from_chip("additional_documents", r, h), [recommendation_state, chat_history_state], [chat_html, chat_history_state])
     chip6.click(lambda r, h: chat_from_chip("alternate_deals", r, h), [recommendation_state, chat_history_state], [chat_html, chat_history_state])
+    chat_clear.click(clear_chat, [recommendation_state], [chat_html, chat_history_state])
 
     demo.load(initialize_dashboard, [filtered_state, chat_lookup_state], selection_outputs)
 
